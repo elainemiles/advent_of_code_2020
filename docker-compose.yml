@@ -1,0 +1,30 @@
+version: '3'
+services:
+
+  notebook: &aoc
+    build:
+      dockerfile: ./docker/aoc.dockerfile
+      context: .
+      args:
+        PYTHON_VERSION: python3.8
+        PROJECT_NAME: aoc
+    environment:
+      - PYENV_VERSION="aoc"
+      - JUPYTER_TOKEN=easy
+    image: "jupyter/aoc"
+    container_name: aoc_notebook
+    labels:
+      description: My AOC Notebook
+      name: jupyter notebook
+    entrypoint: jupyter lab --port=8888 --no-browser --ip=0.0.0.0 --allow-root
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/app
+      - home:/root
+      - venv:/pyenv/versions/aoc
+
+volumes:
+  home:
+  venv:
+    driver: local
