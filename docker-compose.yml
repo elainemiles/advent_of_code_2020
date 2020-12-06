@@ -11,7 +11,7 @@ services:
     environment:
       - PYENV_VERSION="aoc"
       - JUPYTER_TOKEN=easy
-    image: "jupyter/aoc"
+    image: "elainemiles/aoc"
     container_name: aoc_notebook
     labels:
       description: My AOC Notebook
